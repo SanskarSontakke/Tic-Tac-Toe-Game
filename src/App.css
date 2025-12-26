@@ -1,81 +1,206 @@
+/* Global Styles */
+:root {
+  --primary-color: #4a90e2;
+  --secondary-color: #f5f6fa;
+  --text-color: #2c3e50;
+  --accent-color: #e74c3c;
+  --board-bg: #dfe6e9;
+  --square-bg: #ffffff;
+  --square-hover: #ececec;
+  --shadow-light: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-deep: 0 10px 20px rgba(0, 0, 0, 0.15);
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
-  font-family: sans-serif;
-  margin: 20px;
+  font-family: var(--font-family);
+  margin: 0;
   padding: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
+  color: var(--text-color);
 }
 
-h1 {
-  margin-top: 0;
-  font-size: 22px;
-}
-
-h2 {
-  margin-top: 0;
-  font-size: 20px;
-}
-
-h3 {
-  margin-top: 0;
-  font-size: 18px;
-}
-
-h4 {
-  margin-top: 0;
-  font-size: 16px;
-}
-
-h5 {
-  margin-top: 0;
-  font-size: 14px;
-}
-
-h6 {
-  margin-top: 0;
-  font-size: 12px;
-}
-
-code {
-  font-size: 1.2em;
-}
-
-ul {
-  padding-left: 20px;
-}
-
-.square {
-  background: #fff;
-  border: 1px solid #999;
-  float: left;
-  font-size: 24px;
-  font-weight: bold;
-  line-height: 34px;
-  height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
-  padding: 0;
-  text-align: center;
-  width: 34px;
-}
-
-.board-row:after {
-  clear: both;
-  content: '';
-  display: table;
-}
-
-.status {
-  margin-bottom: 10px;
-}
-
+/* Layout Containers */
 .game {
   display: flex;
   flex-direction: row;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: var(--shadow-deep);
+  gap: 40px;
+  backdrop-filter: blur(10px);
+  max-width: 900px;
+  width: 95%;
+  align-items: flex-start;
+  transition: all 0.3s ease;
+}
+
+.game-board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .game-info {
-  margin-left: 20px;
+  /* flex: 1; - Removed to tighten layout */
+  padding-left: 20px;
+  border-left: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Typography */
+h1,
+h2,
+h3 {
+  margin: 0 0 15px 0;
+  color: var(--text-color);
+}
+
+.status {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: var(--primary-color);
+  text-align: center;
+  min-height: 36px;
+}
+
+/* Board & Squares */
+.board-row {
+  display: flex;
+}
+
+.square {
+  width: 100px;
+  height: 100px;
+  background: var(--square-bg);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  /* Softer borders */
+  margin: 4px;
+  border-radius: 12px;
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 100px;
+  /* Vertically center text */
+  cursor: pointer;
+  color: var(--text-color);
+  box-shadow: var(--shadow-light);
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  /* Remove default button padding */
+}
+
+/* Different colors for X and O */
+.square.sq-x {
+  color: var(--primary-color);
+}
+
+.square.sq-o {
+  color: var(--accent-color);
+}
+
+.square:hover {
+  background: var(--square-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.square:active {
+  transform: translateY(1px);
+}
+
+/* Animations using keyframes */
+@keyframes popIn {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+
+  80% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.square span {
+  animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  display: block;
+}
+
+/* Game Info & Controls */
+.reset-button {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-light);
+}
+
+.reset-button:hover {
+  background: #357abd;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(74, 144, 226, 0.3);
+}
+
+.reset-button:active {
+  transform: translateY(0);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .game {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 30px;
+  }
+
+  .game-info {
+    width: 100%;
+    padding-left: 0;
+    border-left: none;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+  }
+
+  .square {
+    width: 80px;
+    height: 80px;
+    font-size: 36px;
+    line-height: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .square {
+    width: 70px;
+    height: 70px;
+    margin: 2px;
+    font-size: 32px;
+    line-height: 70px;
+  }
 }
