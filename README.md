@@ -1,46 +1,36 @@
-# Simple Tic Tac Toe
+# Tic Tac Toe
+> A React game where two players compete on a 3×3 grid, with move history and reset.
 
-A simple Tic Tac Toe game built with React and Vite.
+[![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![React 19](https://img.shields.io/badge/React-19-61dafb.svg)](https://react.dev)
 
-## Features
+## What it does
+A playable Tic Tac Toe game built with React and Vite. Players alternate marking squares as X and O, with automatic detection of winners and draw states. You can reset the board at any time.
 
-- Play Tic Tac Toe against another player (hotseat).
-- View the history of moves.
-- Jump back to a previous move.
+## Why I built it
+Learning project to practice React state management and component composition.
 
-## Getting Started
+## Tech stack
+- React 19
+- Vite
+- JavaScript ES modules
 
-### Prerequisites
-
-- Node.js (version 14 or higher recommended)
-- npm (usually comes with Node.js)
-
-### Installation
-
-1. Clone the repository (or download the source code).
-2. Open your terminal and navigate to the project directory.
-3. Install dependencies:
-
-   ```bash
-   npm install
-   ```
-
-### Running the Game
-
-To start the development server:
+## Getting started
 
 ```bash
+git clone https://github.com/SanskarSontakke/Tic-Tac-Toe-Game
+cd Tic-Tac-Toe-Game
+npm install
 npm run dev
 ```
 
-Open your browser and navigate to the URL shown in the terminal (usually `http://localhost:5173`).
+Open your browser to the URL shown in the terminal (usually `http://localhost:5173`).
 
-### Building for Production
+## How it works
+Click a square to mark it with your symbol (X or O). The game detects wins across rows, columns, and diagonals, and identifies draw states when the board fills. The Reset Game button clears the board and starts a new game.
 
-To build the project for production:
+## Results / status
+Working demo with two-player hotseat gameplay.
 
-```bash
-npm run build
-```
-
-The build artifacts will be stored in the `dist/` directory.
+## License
+MIT © 2026 Sanskar Sontakke
